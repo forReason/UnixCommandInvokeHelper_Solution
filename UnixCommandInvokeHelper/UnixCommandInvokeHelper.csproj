@@ -4,7 +4,7 @@
     <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <ApplicationIcon>UnixCommandInvokeHelper_Solution_Icon.png</ApplicationIcon>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>Unix Command Invoke Helper</Title>
@@ -43,7 +43,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="UnixCommandInvokeHelper_Solution_Icon.png" />
+    <Content Include="favicon.ico" />
   </ItemGroup>
 
   <ItemGroup>
