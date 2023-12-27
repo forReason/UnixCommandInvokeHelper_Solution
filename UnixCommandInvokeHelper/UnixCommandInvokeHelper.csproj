@@ -1,10 +1,61 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <ApplicationIcon>UnixCommandInvokeHelper_Solution_Icon.png</ApplicationIcon>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Unix Command Invoke Helper</Title>
+    <Version>1.0.0</Version>
+    <Authors>Julian Bechtold</Authors>
+    <Description>This is a very small and basic library granting developers full control over unix systems either through local shell or ssh (local &amp; remote)</Description>
+    <Copyright>Julian Bechtold</Copyright>
+    <PackageProjectUrl>https://github.com/forReason/UnixCommandInvokeHelper_Solution</PackageProjectUrl>
+    <PackageIcon>UnixCommandInvokeHelper_Solution_Icon.png</PackageIcon>
+    <RepositoryUrl>https://github.com/forReason/UnixCommandInvokeHelper_Solution/tree/master</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>ssh;shell;sudo;command;execute;ssh</PackageTags>
+    <PackageReleaseNotes>initial release</PackageReleaseNotes>
+    <PackageOutputPath>Y:\Projects\Programmbibliotheken\LocalNugetPackages</PackageOutputPath>
+    <PackageLicenseExpression>MIT-Modern-Variant</PackageLicenseExpression>
+    <IncludeSymbols>False</IncludeSymbols>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0|AnyCPU'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0|AnyCPU'">
+    <DebugType>embedded</DebugType>
+    <WarningLevel>7</WarningLevel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0|AnyCPU'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0|AnyCPU'">
+    <DebugType>embedded</DebugType>
+    <WarningLevel>7</WarningLevel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="UnixCommandInvokeHelper_Solution_Icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\UnixCommandInvokeHelper_Solution_Icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="SSH.NET" Version="2023.0.0" />
