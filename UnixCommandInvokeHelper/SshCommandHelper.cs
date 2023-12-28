@@ -70,6 +70,7 @@ namespace UnixCommandInvokeHelper
                     client.Connect();
                     SshCommand executionResult = client.RunCommand(command);
                     result.Errors = executionResult.Error;
+                    
                     result.Output = executionResult.Result;
                 }
             }
@@ -95,14 +96,23 @@ namespace UnixCommandInvokeHelper
         /// </warning>
         public CommandResult RunCommandSudo(string command, string password = "")
         {
+            CommandResult result;
             if (!string.IsNullOrEmpty(password))
             {
-                return RunCommand($"echo '{password}' | sudo -S {command}");
+                result = RunCommand($"echo '{password}' | sudo -S {command}");
             }
             else
             {
-                return RunCommand($"sudo {command}");
+                result = RunCommand($"sudo {command}");
             }
+            List<string> filteredLines = new List<string>();
+            foreach (string line in result.Errors.Split('\n'))
+            {
+                if (!line.StartsWith("[sudo] password for "))
+                    filteredLines.Add(line);
+            }
+            result.Errors = string.Join("\n", filteredLines);
+            return result;
         }
     }
 }

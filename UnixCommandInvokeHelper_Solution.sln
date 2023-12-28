@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnixCommandInvokeHelper", "UnixCommandInvokeHelper\UnixCommandInvokeHelper.csproj", "{C59AD859-5F18-46D3-BB94-756C60FBADAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnixCommandInvokeHelper", "UnixCommandInvokeHelper\UnixCommandInvokeHelper.csproj", "{C59AD859-5F18-46D3-BB94-756C60FBADAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnixCommandInvokeHelperTests", "UnixCommandInvokeHelperTests\UnixCommandInvokeHelperTests.csproj", "{97EBAC59-EFBA-466B-BA91-326C31A38EAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{C59AD859-5F18-46D3-BB94-756C60FBADAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C59AD859-5F18-46D3-BB94-756C60FBADAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C59AD859-5F18-46D3-BB94-756C60FBADAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97EBAC59-EFBA-466B-BA91-326C31A38EAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97EBAC59-EFBA-466B-BA91-326C31A38EAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97EBAC59-EFBA-466B-BA91-326C31A38EAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97EBAC59-EFBA-466B-BA91-326C31A38EAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
