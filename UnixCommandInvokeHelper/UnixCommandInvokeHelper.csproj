@@ -8,7 +8,7 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>Unix Command Invoke Helper</Title>
-    <Version>1.0.1</Version>
+    <Version>1.1.0</Version>
     <Authors>Julian Bechtold</Authors>
     <Description>This is a very small and basic library granting developers full control over unix systems either through local shell or ssh (local &amp; remote)</Description>
     <Copyright>Julian Bechtold</Copyright>
@@ -17,7 +17,10 @@
     <RepositoryUrl>https://github.com/forReason/UnixCommandInvokeHelper_Solution/tree/master</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>ssh;shell;sudo;command;execute;ssh</PackageTags>
-    <PackageReleaseNotes>1.0.1
+    <PackageReleaseNotes>1.1.0
+- asses support for WSL (Windows subsystem for linux)
+
+1.0.1
 - added error prompt filter for sudo commands (en only)
 
 1.0.0
