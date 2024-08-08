@@ -12,6 +12,15 @@ namespace UnixCommandInvokeHelper
     public class ProcessCommandHelper
     {
         /// <summary>
+        /// creates a new instance.
+        /// </summary>
+        /// <param name="workingDir">when setting a working dir, every issued command will attempt to execute in the specified folder</param>
+        public ProcessCommandHelper(DirectoryInfo? workingDir = null)
+        {
+            WorkingDirectory = workingDir;
+        }
+        public DirectoryInfo? WorkingDirectory { get; set; }
+        /// <summary>
         /// Converts a Windows path to a WSL path.
         /// </summary>
         /// <param name="windowsPath">The Windows path to convert</param>
@@ -28,11 +37,13 @@ namespace UnixCommandInvokeHelper
         /// </remarks>
         /// <returns>Awaitable Task</returns>
         /// <param name="commandText">The command to execute</param>
-        /// <param name="workingDirectory">The directory path to execute the command in (optional)</param>
-        public async Task<CommandResult> ExecuteAsync(string commandText, DirectoryInfo? workingDirectory = null)
+        /// <param name="commandDirectory">The directory path to execute the command in (optional)</param>
+        public async Task<CommandResult> ExecuteAsync(string commandText, DirectoryInfo? commandDirectory = null)
         {
             CommandResult result = new CommandResult();
             result.StartTime = DateTime.Now;
+            DirectoryInfo? workingDir = WorkingDirectory;
+            if (commandDirectory != null) workingDir = commandDirectory;
 
             using (var process = new Process())
             {
@@ -51,7 +62,7 @@ namespace UnixCommandInvokeHelper
                     {
                         processStartInfo.FileName = "wsl.exe";
                         string commandstring = "";
-                        if (workingDirectory != null) commandstring = $"cd {ConvertPathToWsl(workingDirectory.FullName)} &&";
+                        if (workingDir != null) commandstring = $"cd {ConvertPathToWsl(workingDir.FullName)} &&";
                         commandstring += escapedArgs;
                         processStartInfo.Arguments = $"-e bash -c \"{commandstring}\"";
                     }
@@ -59,9 +70,9 @@ namespace UnixCommandInvokeHelper
                     {
                         processStartInfo.FileName = "/bin/bash";
                         processStartInfo.Arguments = $"-c \"{escapedArgs}\"";
-                        if (workingDirectory != null)
+                        if (workingDir != null)
                         {
-                            processStartInfo.WorkingDirectory = workingDirectory.FullName;
+                            processStartInfo.WorkingDirectory = workingDir.FullName;
                         }
                     }
                         
@@ -86,7 +97,6 @@ namespace UnixCommandInvokeHelper
         /// <summary>
         /// Executes the command with sudo privileges.
         /// </summary>
-        /// <param name="password">The password for sudo. Leave empty if passwordless sudo is configured.</param>
         /// <remarks>
         /// <para>This method should be used with caution due to the security implications of handling sudo passwords.</para>
         /// <para>Ensure that the sudoers file is properly configured to minimize security risks.</para>
@@ -104,9 +114,9 @@ namespace UnixCommandInvokeHelper
         /// </warning>
         /// <param name="commandText">The command to execute (you do not have to prefix sudo)</param>
         /// <param name="password">The password to use</param>
-        /// <param name="workingDirectory">The directory to execute the command in</param>
+        /// <param name="commandDirectory">The directory to execute the command in</param>
         /// <returns>Awaitable Task</returns>
-        public async Task<CommandResult> ExecuteSudoAsync(string commandText, string password = "", DirectoryInfo? workingDirectory = null)
+        public async Task<CommandResult> ExecuteSudoAsync(string commandText, string password = "", DirectoryInfo? commandDirectory = null)
         {
             if (!string.IsNullOrEmpty(password))
             {
@@ -116,7 +126,7 @@ namespace UnixCommandInvokeHelper
             {
                 commandText = $"sudo {commandText}";
             }
-            return await ExecuteAsync(commandText, workingDirectory);
+            return await ExecuteAsync(commandText, commandDirectory);
         }
     }
 }
